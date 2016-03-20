@@ -1,0 +1,16 @@
+[
+{
+  "modid": "LevelStorage",
+  "name": "LevelStorage",
+  "description": "Next Generation Industries",
+  "version": "1.7.10-1.0.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["mak326428"],
+  "credits": "Updated By ManEXpen",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
