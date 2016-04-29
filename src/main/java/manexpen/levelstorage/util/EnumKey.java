@@ -1,5 +1,5 @@
 package manexpen.levelstorage.util;
 
 public enum EnumKey {
-	RAYSHOOT, BEAMSHOOT;
+	RAYSHOOT, BEAMSHOOT, CHANGE_REPEL_MODE;
 }

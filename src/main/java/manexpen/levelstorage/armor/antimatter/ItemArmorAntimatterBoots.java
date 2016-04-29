@@ -11,6 +11,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 public class ItemArmorAntimatterBoots extends ItemArmorAntimatterBase implements IHasRecipe{
+
+	public boolean repelFlag;
+
 	public ItemArmorAntimatterBoots() {
 		super(ItemArmorAntimatterBase.BOOTS);
 		MinecraftForge.EVENT_BUS.register(this);
@@ -36,6 +39,7 @@ public class ItemArmorAntimatterBoots extends ItemArmorAntimatterBase implements
 			}
 		}
 	}
+
 
 	@Override
 	public void addCraftingRecipe() {

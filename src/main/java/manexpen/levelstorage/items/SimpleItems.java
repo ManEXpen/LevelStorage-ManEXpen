@@ -4,13 +4,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import manexpen.levelstorage.ItemList;
 import manexpen.levelstorage.Proxy;
 import manexpen.levelstorage.api.IHasRecipe;
-import manexpen.levelstorage.util.RecipeHelper;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class SimpleItems extends Item implements IHasRecipe, RecipeHelper {
+public class SimpleItems extends Item implements IHasRecipe {
 	private EnumItems kind;
 
 	public SimpleItems(EnumItems kind) {

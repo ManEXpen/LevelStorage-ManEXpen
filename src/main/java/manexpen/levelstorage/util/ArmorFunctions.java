@@ -9,12 +9,14 @@ import manexpen.levelstorage.LSKeyboard;
 import manexpen.levelstorage.LevelStorage;
 import manexpen.levelstorage.api.BootsFlyingEvent;
 import manexpen.levelstorage.armor.antimatter.ItemArmorAntimatterBase;
+import manexpen.levelstorage.armor.antimatter.ItemArmorAntimatterBoots;
 import manexpen.levelstorage.render.CallMWRay;
+import manexpen.levelstorage.util.nbt.NBTHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
@@ -28,6 +30,7 @@ public class ArmorFunctions {
 	public static HashMap<EntityPlayer, Boolean> onGroundMap = new HashMap<EntityPlayer, Boolean>();
 	private static float jumpCharge;
 	private static boolean waitJump = false;
+	private static boolean repelFlag = false;
 	public static HashMap<Integer, Integer> potionRemovalCost = new HashMap<Integer, Integer>();
 	public static HashMap<EntityPlayer, Integer> speedTickerMap = new HashMap<EntityPlayer, Integer>();
 
@@ -157,7 +160,7 @@ public class ArmorFunctions {
 	public static void helmetFunctions(World world, EntityPlayer player, ItemStack itemStack, int RAY_COST,
 			int ENTITY_HIT_COST, int FOOD_COST) {
 
-		if (LSKeyboard.getInstance().getIsPressed(EnumKey.BEAMSHOOT) && !player.isSneaking()) {
+		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.BEAMSHOOT) && !player.isSneaking()) {
 			if (ElectricItem.manager.canUse(itemStack, RAY_COST)) {
 				ElectricItem.manager.use(itemStack, RAY_COST, player);
 				player.playSound(LevelStorage.MODNAME.toLowerCase()+":plasma_shotgun_shot", 1.0F, 1.2F / 0.9F);
@@ -316,13 +319,23 @@ public class ArmorFunctions {
 			if (player.isSneaking() && Keys.instance.isBoostKeyDown(player) && !player.onGround
 					&& player.motionY <= 0) {
 				player.motionY *= 2;
+				EntityPlayerHelper.repelEntityInRange(world, player, 3.5F);
 			}
 		}
+	}
 
-		if (player.isSneaking()) {
-			AxisAlignedBB box = AxisAlignedBB.getBoundingBox(player.posX - 3.5, player.posY - 3.5, player.posZ - 3.5,
-					player.posX + 3.5, player.posY + 3.5, player.posZ + 3.5);
-			WorldHelper.repelEntitiesInAABBFromPoint(world, box, player.posX, player.posY, player.posZ, true);
+	public static void repelEntity(World world, EntityPlayer player, ItemStack itemstack){
+
+		((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag = NBTHelper.NBTReadFromBootsIsRepelEnable(itemstack);
+
+		if(((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag){
+			EntityPlayerHelper.repelEntityInRange(world, player, 10);
+		}
+
+		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.CHANGE_REPEL_MODE)) {
+			((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag = !((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag;
+			player.addChatComponentMessage(new ChatComponentText("現在のモード: "+((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag));
+			NBTHelper.NBTWriteToBoots(itemstack, ((ItemArmorAntimatterBoots)itemstack.getItem()).repelFlag);
 		}
 	}
 

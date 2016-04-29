@@ -8,7 +8,6 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import manexpen.levelstorage.Proxy;
 import manexpen.levelstorage.util.ArmorFunctions;
-import manexpen.levelstorage.util.RecipeHelper;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -23,7 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
 
-public class ItemArmorAntimatterBase extends ItemArmor implements ISpecialArmor, IElectricItem, RecipeHelper {
+public class ItemArmorAntimatterBase extends ItemArmor implements ISpecialArmor, IElectricItem{
 
 	public static int RENDER_ID;
 	public static final int HELMET = 0;
@@ -77,6 +76,7 @@ public class ItemArmorAntimatterBase extends ItemArmor implements ISpecialArmor,
 			ArmorFunctions.jumpBooster(world, player, itemStack);
 			ArmorFunctions.fly(FLYING_ENERGY_PER_TICK, player, itemStack, world);
 			ArmorFunctions.HighSpeedDown(world, player, itemStack);
+			ArmorFunctions.repelEntity(world, player, itemStack);
 		} else if (this.armorType == LEGGINGS) {
 			ArmorFunctions.speedUp(player, itemStack);
 			ArmorFunctions.MultipleJump(world, player, itemStack);

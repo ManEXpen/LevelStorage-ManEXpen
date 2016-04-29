@@ -10,7 +10,6 @@ import ic2.api.item.IElectricItem;
 import manexpen.levelstorage.ItemList;
 import manexpen.levelstorage.Proxy;
 import manexpen.levelstorage.api.IHasRecipe;
-import manexpen.levelstorage.util.RecipeHelper;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -19,7 +18,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemEnergeticEnrichedMatterOrb extends Item implements IElectricItem, IHasRecipe, RecipeHelper {
+public class ItemEnergeticEnrichedMatterOrb extends Item implements IElectricItem, IHasRecipe {
 	public static final int TIER = 4;
 	public static final int STORAGE = 40 * 1000 * 1000;
 
