@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
-import manexpen.levelstorage.Proxy;
+import manexpen.levelstorage.ClientProxy;
 import manexpen.levelstorage.util.ArmorFunctions;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -46,7 +46,7 @@ public class ItemArmorAntimatterBase extends ItemArmor implements ISpecialArmor,
 		super(ArmorMaterial.DIAMOND, RENDER_ID, armorType);
 		this.setMaxDamage(27);
 		this.setNoRepair();
-		this.setCreativeTab(Proxy.CreativeTab);
+		this.setCreativeTab(ClientProxy.CreativeTab);
 		this.setMaxStackSize(1);
 
 		switch (armorType) {

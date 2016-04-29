@@ -8,7 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import manexpen.levelstorage.ItemList;
-import manexpen.levelstorage.Proxy;
+import manexpen.levelstorage.ClientProxy;
 import manexpen.levelstorage.api.IHasRecipe;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,7 +34,7 @@ public class ItemArmorAntimatterHelmetPlus extends ItemArmorAntimatterBase
 
 		this.setMaxDamage(27);
 		this.setNoRepair();
-		this.setCreativeTab(Proxy.CreativeTab);
+		this.setCreativeTab(ClientProxy.CreativeTab);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("ItemArmorAntimatterHelmetPlus");
 	}

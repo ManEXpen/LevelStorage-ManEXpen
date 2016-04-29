@@ -2,7 +2,7 @@ package manexpen.levelstorage.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import manexpen.levelstorage.ItemList;
-import manexpen.levelstorage.Proxy;
+import manexpen.levelstorage.ClientProxy;
 import manexpen.levelstorage.api.IHasRecipe;
 import manexpen.levelstorage.util.ResourceParameter;
 import net.minecraft.init.Blocks;
@@ -48,7 +48,7 @@ public class SimpleItems extends Item implements IHasRecipe {
 			setUnlocalizedName("SuperConductorParts");
 			break;
 		}
-		setCreativeTab(Proxy.CreativeTab);
+		setCreativeTab(ClientProxy.CreativeTab);
 	}
 
 	@Override

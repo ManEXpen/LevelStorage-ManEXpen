@@ -2,47 +2,31 @@ package manexpen.levelstorage;
 
 import java.lang.reflect.Field;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import manexpen.levelstorage.api.IHasRecipe;
-import manexpen.levelstorage.armor.antimatter.ItemArmorAntimatterBase;
 import manexpen.levelstorage.entity.EntityElectromagneticBombs;
-import manexpen.levelstorage.render.EntityElectromagneticBombsModel;
-import manexpen.levelstorage.render.RenderElectromagneticBombs;
-import manexpen.levelstorage.util.ResourceParameter;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 
-public class Proxy {
-	public static CreativeTabs CreativeTab = new LSCreativeTab();
-
-	public static final ResourceLocation TESLA_RAY_1 = ResourceParameter.getResourceLocation("misc/tesla.png");
-	public static final ResourceLocation TESLA_RAY_2 = ResourceParameter.getResourceLocation("misc/tesla.png");
-
-	public static void init(LevelStorage instance) {
-		ItemArmorAntimatterBase.RENDER_ID = RenderingRegistry.addNewArmourRendererPrefix("antimatter");
-
-		EntityRegistry.registerModEntity(EntityElectromagneticBombs.class, "EntityElectromagneticBombs", 512, instance,
+public class CommonProxy {
+	public void init(LevelStorage ls){
+		EntityRegistry.registerModEntity(EntityElectromagneticBombs.class, "EntityElectromagneticBombs", 512, ls,
 				128, 5, true);
-		RenderingRegistry.registerEntityRenderingHandler(EntityElectromagneticBombs.class,
-				new RenderElectromagneticBombs(new EntityElectromagneticBombsModel()));
 
-		LSKeyboard.KeyRegister();
 		SomeItemRegistry();
 		LanguageRegister();
-		eventRegister();
 	}
 
-	public static void recipeRegister(Object obj) {
+	public static void recipeRegister(Object obj, String itemName) {
 		if (obj instanceof IHasRecipe)
+			LevelStorage.log.info("Register Recipe: " + itemName);
 			((IHasRecipe) obj).addCraftingRecipe();
 	}
 
 	public static void GameRegister(Object obj, String itemName) {
 		Item currItem = (Item) obj;
+		LevelStorage.log.info("Register: " + itemName);
 		GameRegistry.registerItem(currItem, itemName);
 	}
 
@@ -53,7 +37,7 @@ public class Proxy {
 			try {
 				obj = f.get(null);
 				GameRegister(obj, f.getName());
-				recipeRegister(obj);
+				recipeRegister(obj, f.getName());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 			}
@@ -77,8 +61,4 @@ public class Proxy {
 		LanguageRegistry.addName(ItemList.LevitationBoots, "Levitation Boots");
 		LanguageRegistry.addName(ItemList.SuperConductorParts, "Super Conductor Parts");
 	}
-
-	public static void eventRegister() {
-	}
-
 }

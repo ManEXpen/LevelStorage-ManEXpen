@@ -4,7 +4,6 @@ import java.util.List;
 
 import manexpen.levelstorage.LevelStorage;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -215,8 +214,7 @@ public class EntityElectromagneticBombs extends Entity implements IProjectile {
 			boolean isVillager = false;
 
 			// 4ブロック分の範囲内にいるエンティティ全てに対して繰り返す
-			for(Entity entity1 : list) {
-
+			for (Entity entity1 : list) {
 
 				// 発射物自身or発射後5tick以外だとすりぬける
 				if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5)) {
@@ -229,7 +227,6 @@ public class EntityElectromagneticBombs extends Entity implements IProjectile {
 
 						if (d1 < d0 || d0 == 0.0D) {
 							entity = entity1;
-							Minecraft.getMinecraft().theWorld.newExplosion(Minecraft.getMinecraft().thePlayer, entity.posX, entity.posY, entity.posZ, 40F, false, false);
 							d0 = d1;
 						}
 					}
@@ -262,9 +259,7 @@ public class EntityElectromagneticBombs extends Entity implements IProjectile {
 						|| movingobjectposition.entityHit instanceof EntityHorse) {
 					// 事故防止の為、EntityTameable（犬や猫などのペット）、馬にも当たらないようにする
 					movingobjectposition = null;
-				} else if (movingobjectposition.entityHit instanceof EntityVillager) {
-					// 村人に当たった場合にフラグがtrueになる
-					isVillager = true;
+
 				}
 			}
 
@@ -432,63 +427,56 @@ public class EntityElectromagneticBombs extends Entity implements IProjectile {
 	}
 
 	@Override
-	protected boolean canTriggerWalking()
-    {
-        return false;
-    }
+	protected boolean canTriggerWalking() {
+		return false;
+	}
 
 	@Override
-	public float getShadowSize()
-    {
-        return 0.0F;
-    }
+	public float getShadowSize() {
+		return 0.0F;
+	}
 
-	public void setDamage(float p_70239_1_)
-    {
-        this.damage = p_70239_1_;
-    }
+	public void setDamage(float p_70239_1_) {
+		this.damage = p_70239_1_;
+	}
 
-	public double getDamage()
-    {
-        return this.damage;
-    }
+	public double getDamage() {
+		return this.damage;
+	}
 
 	@Override
-    public boolean canAttackWithItem()
-    {
-        return false;
-    }
+	public boolean canAttackWithItem() {
+		return false;
+	}
 
-	public float fallSpeed()
-    {
-    	return 0.0F;
-    }
+	public float fallSpeed() {
+		return 0.0F;
+	}
 
-	public float getRenderSize(){return 2;}
+	public float getRenderSize() {
+		return 2;
+	}
 
-    /* ダメージソースのタイプ */
-    public DamageSource thisDamageSource(Entity entity)
-    {
-    	return entity != null ? EntityDamageSource.causeIndirectMagicDamage(entity, this) : DamageSource.magic;
-    }
+	/* ダメージソースのタイプ */
+	public DamageSource thisDamageSource(Entity entity) {
+		return entity != null ? EntityDamageSource.causeIndirectMagicDamage(entity, this) : DamageSource.magic;
+	}
 
-    /* ブロック貫通 */
-    public boolean isPenetrateBlock()
-    {
-    	return false;
-    }
+	/* ブロック貫通 */
+	public boolean isPenetrateBlock() {
+		return false;
+	}
 
-    /* エンティティ貫通 */
-    public boolean isPenetrateEntity()
-    {
-    	return true;
-    }
+	/* エンティティ貫通 */
+	public boolean isPenetrateEntity() {
+		return true;
+	}
 
-    private void playSound(){
-    	if(this.flag == 0)
-    	this.playSound(LevelStorage.MODNAME.toLowerCase()+":plasma_shotgun_shot", 1.0F, 1.2F / 0.9F);
-    	this.flag++;
-    }
+	private void playSound() {
+		if (this.flag == 0)
+			this.playSound(LevelStorage.MODNAME.toLowerCase() + ":plasma_shotgun_shot", 1.0F, 1.2F / 0.9F);
+		this.flag++;
+	}
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbt) {

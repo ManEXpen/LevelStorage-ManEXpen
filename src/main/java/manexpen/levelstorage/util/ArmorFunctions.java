@@ -41,7 +41,7 @@ public class ArmorFunctions {
 	}
 
 	public static void walkWater(World world, EntityPlayer player, ItemStack armor) {
-		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.RAYSHOOT) && player.inventory.getCurrentItem() == null) {
+		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.BEAMSHOOT) && player.inventory.getCurrentItem() == null) {
 			if (ElectricItem.manager.canUse(armor, ItemArmorAntimatterBase.EU_PER_TICK_WATERWALK)) {
 				if (!world.isRemote)
 					ElectricItem.manager.use(armor, ItemArmorAntimatterBase.EU_PER_TICK_WATERWALK, player);
@@ -117,7 +117,7 @@ public class ArmorFunctions {
 	public static void antimatterLeggingsFunctions(World world, EntityPlayer player, ItemStack armor) {
 		if (world.isRemote)
 			return;
-		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.RAYSHOOT) && player.isSneaking()) {
+		if (LSKeyboard.getInstance().getIsKeyPressed(EnumKey.BEAMSHOOT) && player.isSneaking()) {
 			int x = 0, y = 0, z = 0;
 			MovingObjectPosition mop = getMovingObjectPositionFromPlayer(world, player, true);
 			if (mop != null && mop.typeOfHit == MovingObjectType.BLOCK) {
