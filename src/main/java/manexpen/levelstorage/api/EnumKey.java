@@ -13,4 +13,10 @@ public enum EnumKey {
     public static EnumKey getKeyByID(int keyType) {
         return values()[keyType];
     }
+
+
+    @Override
+    public String toString() {
+        return this.name();
+    }
 }

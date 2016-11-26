@@ -77,7 +77,10 @@ public class ItemArmorAntimatterBoots extends ItemArmorAntimatterBase {
 
     @Override
     public void onRecieveKeyPacket(World world, EntityPlayer player, ItemStack itemStack, EnumKey keyType) {
-        if (keyType == EnumKey.CHANGE_REPEL_MODE) repelFlagChange(player, itemStack);
+        if (keyType == EnumKey.CHANGE_REPEL_MODE && isFirstPacket) {
+            repelFlagChange(player, itemStack);
+            isFirstPacket = false;
+        } else isFirstPacket = true;
     }
 
     @Override

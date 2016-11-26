@@ -19,7 +19,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(LevelStorage ls) {
         super.init(ls);
-
         ItemArmorAntimatterBase.RENDER_ID = RenderingRegistry.addNewArmourRendererPrefix("antimatter");
         RenderingRegistry.registerEntityRenderingHandler(EntityElectromagneticBombs.class,
                 new RenderElectromagneticBombs(new EntityElectromagneticBombsModel()));

@@ -18,6 +18,7 @@ public class CommonProxy {
 
         SomeItemRegistry();
         LanguageRegister();
+        testFunc();
 
         LSPacketHandler.init();
     }
@@ -68,5 +69,9 @@ public class CommonProxy {
         LanguageRegistry.addName(ItemList.LevitationBoots, "Supersonic Leggings");
         LanguageRegistry.addName(ItemList.LevitationBoots, "Levitation Boots");
         LanguageRegistry.addName(ItemList.SuperConductorParts, "Super Conductor Parts");
+    }
+
+    private static void testFunc() {
+        ItemList.AntimatterHelmet.onRecieveKeyPacket(null, null, null, null);
     }
 }

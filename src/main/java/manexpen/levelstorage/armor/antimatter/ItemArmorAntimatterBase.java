@@ -43,6 +43,9 @@ public abstract class ItemArmorAntimatterBase extends ItemArmor implements ISpec
 
     public static HashMap<Entity, Boolean> onGroundMap = new HashMap<>();
 
+    /*なぜか二回受信してしまうので*/
+    protected boolean isFirstPacket = true;
+
     protected ItemArmorAntimatterBase(int armorType) {
         super(ArmorMaterial.DIAMOND, RENDER_ID, armorType);
         this.setMaxDamage(27);

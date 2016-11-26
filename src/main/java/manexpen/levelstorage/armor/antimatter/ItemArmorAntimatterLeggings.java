@@ -8,6 +8,7 @@ import manexpen.levelstorage.LSKeyboard;
 import manexpen.levelstorage.api.EnumKey;
 import manexpen.levelstorage.packet.LSPacketHandler;
 import manexpen.levelstorage.util.BlockLocation;
+import manexpen.levelstorage.util.CommonHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -131,9 +132,8 @@ public class ItemArmorAntimatterLeggings extends ItemArmorAntimatterBase {
     }
 
     public void teleport(World world, EntityPlayer player, ItemStack itemStack) {
-        if (world.isRemote) return;
         int x = 0, y = 0, z = 0;
-        MovingObjectPosition mop = getMovingObjectPositionFromPlayer(world, player, true);
+        MovingObjectPosition mop = CommonHelper.getMovingObjectPositionFromPlayer(world, player, true, 100);
         if (mop != null && mop.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
             if (ElectricItem.manager.canUse(itemStack, EU_PER_TELEPORT))
                 ElectricItem.manager.use(itemStack, EU_PER_TELEPORT, player);
